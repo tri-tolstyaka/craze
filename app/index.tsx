@@ -1,29 +1,16 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDom from 'react-dom'
 // import './index.css'
 
-class App extends React.Component {
-    render() {
-        return <button id="hehe" className="hehe">I am clickable</button>
-    }
+export default () => {
+    return <div>Hey there</div>
 }
 
-ReactDOM.render(
-    // <App />, document.getElementById("app").addEventListener("mouseenter", run)
-    <App />, document.getElementById("app")
-)
+export const mount = (Component) => {
+    // the name of the component to mount can be found in templates/views/index.hbs
+    ReactDom.render(<Component />, document.getElementById('root'))
+}
 
-function run() {
-    var hehe = document.getElementById("hehe");
-    if (!hehe.style.right) {
-        hehe.style.right = "3vw";
-    } else {
-        var posLeft = parseInt(hehe.style.right);
-        if (posLeft <= 80) {
-            hehe.style.right = "20vw";
-        } else if (posLeft > 45) {
-            posLeft += 150;
-            hehe.style.right = (posLeft + 150) + "px";
-        }
-    }
+export const unmount = () => {
+    ReactDom.unmountComponentAtNode(document.getElementById('root') as any)
 }
